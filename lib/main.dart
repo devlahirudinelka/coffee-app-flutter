@@ -44,7 +44,7 @@ class _MyHomePageState extends State<MyHomePage> {
     Widget currentWidgetPage = const Text("ffdfd");
     switch (selectedIndex) {
       case 0:
-        currentWidgetPage =  MenuPage(
+        currentWidgetPage = MenuPage(
           dataManger: dataManager,
         );
         break;
@@ -52,12 +52,12 @@ class _MyHomePageState extends State<MyHomePage> {
         currentWidgetPage = const OffersPage();
         break;
       case 2:
-        currentWidgetPage =  OrderPage(
+        currentWidgetPage = OrderPage(
           dataManger: dataManager,
         );
         break;
       default:
-        currentWidgetPage =  MenuPage(
+        currentWidgetPage = MenuPage(
           dataManger: dataManager,
         );
         break;
