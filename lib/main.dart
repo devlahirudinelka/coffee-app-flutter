@@ -45,7 +45,7 @@ class _MyHomePageState extends State<MyHomePage> {
     switch (selectedIndex) {
       case 0:
         currentWidgetPage = MenuPage(
-          dataManger: dataManager,
+          dataManager: dataManager,
         );
         break;
       case 1:
@@ -58,7 +58,7 @@ class _MyHomePageState extends State<MyHomePage> {
         break;
       default:
         currentWidgetPage = MenuPage(
-          dataManger: dataManager,
+          dataManager: dataManager,
         );
         break;
     }

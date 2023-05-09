@@ -4,55 +4,45 @@ import 'package:flutter_application_1/datamanager.dart';
 import '../datamodel.dart';
 
 class MenuPage extends StatelessWidget {
-  final DataManger dataManger;
-  const MenuPage({super.key, required this.dataManger});
+  final DataManger dataManager;
+  const MenuPage({super.key, required this.dataManager});
 
   @override
   Widget build(BuildContext context) {
-    var p = Product(id: 1, name: "Dummy Product", price: 2.54, image: "");
-    var q = Product(id: 2, name: "Product", price: 54.0, image: "");
-    var r = Product(id: 3, name: "Product Dummy ", price: 40.5, image: "");
-    var s = Product(id: 4, name: "Coffee Product", price: 45.8, image: "");
-    var t = Product(id: 5, name: "Captions Product", price: 75.9, image: "");
-    var u = Product(id: 6, name: "Sundra Product", price: 25.8, image: "");
-    var v = Product(id: 7, name: "Hello Product", price: 42.5, image: "");
-    var w = Product(id: 8, name: "Hi Product", price: 85.6, image: "");
-    return ListView(
-      children: [
-        ProductItem(
-          product: p,
-          onAdd: () {},
-        ),
-        ProductItem(
-          product: q,
-          onAdd: () {},
-        ),
-        ProductItem(
-          product: r,
-          onAdd: () {},
-        ),
-        ProductItem(
-          product: s,
-          onAdd: () {},
-        ),
-        ProductItem(
-          product: t,
-          onAdd: () {},
-        ),
-        ProductItem(
-          product: u,
-          onAdd: () {},
-        ),
-        ProductItem(
-          product: v,
-          onAdd: () {},
-        ),
-        ProductItem(
-          product: w,
-          onAdd: () {},
-        )
-      ],
-    );
+    // var p = Product(id: 1, name: "Dummy Product", price: 2.54, image: "");
+    // var q = Product(id: 2, name: "Product", price: 54.0, image: "");
+    // var r = Product(id: 3, name: "Product Dummy ", price: 40.5, image: "");
+    // var s = Product(id: 4, name: "Coffee Product", price: 45.8, image: "");
+    // var t = Product(id: 5, name: "Captions Product", price: 75.9, image: "");
+    // var u = Product(id: 6, name: "Sundra Product", price: 25.8, image: "");
+    // var v = Product(id: 7, name: "Hello Product", price: 42.5, image: "");
+    // var w = Product(id: 8, name: "Hi Product", price: 85.6, image: "");
+
+    return FutureBuilder(
+        future: dataManager.getMenu(),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            // The future has finished, data is ready
+            var categories = snapshot.data! as List<Category>;
+            return ListView.builder(
+                itemCount: categories.length,
+                itemBuilder: ((context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(categories[index].name),
+                  );
+                }));
+            // Text("There are ${categories.length} categories");
+          } else {
+            if (snapshot.hasError) {
+              // Data is not there ,because of an error
+              return const Text("There was an Error");
+            } else {
+              // Data in progress
+              return const CircularProgressIndicator();
+            }
+          }
+        });
   }
 }
 
