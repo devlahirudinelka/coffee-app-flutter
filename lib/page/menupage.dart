@@ -27,10 +27,24 @@ class MenuPage extends StatelessWidget {
             return ListView.builder(
                 itemCount: categories.length,
                 itemBuilder: ((context, index) {
-                  return Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(categories[index].name),
-                  );
+                  return Column(children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(categories[index].name),
+                    ),
+                    ListView.builder(
+                        shrinkWrap: true,
+                        physics: const ClampingScrollPhysics(),
+                        itemCount: categories[index].products.length,
+                        itemBuilder: (context, prodIndex) {
+                          var product = categories[index].products[prodIndex];
+                          return ProductItem(
+                              product: product,
+                              onAdd: () {
+                                dataManager.cartAdd(product);
+                              });
+                        })
+                  ]);
                 }));
             // Text("There are ${categories.length} categories");
           } else {
@@ -62,7 +76,7 @@ class ProductItem extends StatelessWidget {
             children: [
               FittedBox(
                 fit: BoxFit.fitWidth,
-                child: Image.asset("images/black_coffee.png"),
+                child: Image.network(product.imageUrl),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,

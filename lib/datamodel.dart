@@ -4,7 +4,7 @@ class Product {
   late double price;
   late String image;
   String get imageUrl =>
-      "https://firtman.github.io/coffemasters/api/images/$image";
+      "https://firtman.github.io/coffeemasters/api/images/$image";
   Product({
     required this.id,
     required this.name,
@@ -21,8 +21,6 @@ class Product {
         image: json['image'] as String);
   }
 }
-
-
 
 class Category {
   late String name;

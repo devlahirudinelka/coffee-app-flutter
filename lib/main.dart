@@ -65,6 +65,7 @@ class _MyHomePageState extends State<MyHomePage> {
     //Menu change
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: Image.asset("images/logo.png"),
       ),
       bottomNavigationBar: BottomNavigationBar(
